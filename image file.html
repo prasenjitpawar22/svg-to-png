@@ -1,31 +1,38 @@
-<svg onload="makeDraggable(evt)" viewBox="0 0 369 492" width="242" height="323">
-	<g id="inner" transform="scale(0.74), translate(78.22594142259416, 4.117154811715494)">
-		
-		<image height="100%" width="100%" xlink:href="blob:http://127.0.0.1:8000/05ec6691-e34a-4b44-bb65-d65131adc1ba" 
-			x="78.22594142259416" y="4.117154811715494" class="draggable img-fluid" style="cursor:move; transform: rotate( 0rad );" 
-			visibility="visible">
-		</image>
-	</g>
+<html>
+	<head>
+	</head>
+</html>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<image height="100%" width="100%" xlink:href="mars2.png"></image>
+	<circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
 </svg>
+</body>
 
 <script>
 var svg = document.querySelector( "svg" );
-		var svgData = new XMLSerializer().serializeToString( svg );
+var svgData = new XMLSerializer().serializeToString( svg );
 
-		var canvas = document.createElement( "canvas" );
-		var ctx = canvas.getContext( "2d" );
+var canvas = document.createElement( "canvas" );
+var ctx = canvas.getContext( "2d" );
 
-		var img = document.createElement( "img" );
-		img.setAttribute( "src", "data:image/svg+xml;base64," + btoa( svgData ) );
+var img = document.createElement( "img" );
+img.setAttribute( "src", "data:image/svg+xml;base64," + btoa( svgData ) );
 
-		img.onload = function() {
-			ctx.drawImage( img, 0, 0 );
+ctx.drawImage( img, 0, 0 );
+var see_img = canvas.toDataURL( "image/png" );
 
-			// Now is done
-			console.log( canvas.toDataURL( "image/png" ) );
-			var see_img = canvas.toDataURL( "image/png" )
+document.write('<img style="width:50%" src="'+see_img+'"/>');
 
-			document.write('<img style="width:50%" src="'+see_img+'"/>');
+img.onload = function() {
+    ctx.drawImage( img, 0, 0 );
+    
+    // Now is done
+    //console.log( canvas.toDataURL( "image/png" ) );
+	var see_img = canvas.toDataURL( "image/png" );
 
+	var img1 = document.createElement( "img" );
+	img1.setAttribute( "src", see_img );
 };
 </script>
+
