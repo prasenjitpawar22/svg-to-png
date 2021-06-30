@@ -1,6 +1,6 @@
-<svg onload="makeDraggable(evt)" viewBox="0 0 369 492" width="242" height="323">
+<svg onload="makeDraggable(evt)" viewBox="0 0 369 492" width="242" height="323"> 
 	<g id="inner" transform="scale(0.74), translate(78.22594142259416, 4.117154811715494)">
-		
+<!-- 		image tag of svg you can add img in href and check yourself-->
 		<image height="100%" width="100%" xlink:href="blob:http://127.0.0.1:8000/05ec6691-e34a-4b44-bb65-d65131adc1ba" 
 			x="78.22594142259416" y="4.117154811715494" class="draggable img-fluid" style="cursor:move; transform: rotate( 0rad );" 
 			visibility="visible">
@@ -8,24 +8,22 @@
 	</g>
 </svg>
 
+
 <script>
-var svg = document.querySelector( "svg" );
-		var svgData = new XMLSerializer().serializeToString( svg );
+var svg = document.querySelector( "svg" ); //got svg tag 
+var svgData = new XMLSerializer().serializeToString( svg ); //got svg data 
+var canvas = document.createElement( "canvas" ); //created canvas 
+var ctx = canvas.getContext( "2d" );	
+var img = document.createElement( "img" ); 
+		
+img.setAttribute( "src", "data:image/svg+xml;base64," + btoa( svgData ) );
 
-		var canvas = document.createElement( "canvas" );
-		var ctx = canvas.getContext( "2d" );
+img.onload = function() {
+	ctx.drawImage( img, 0, 0 );
+	console.log( canvas.toDataURL( "image/png" ) ); //show in console data
+	var see_img = canvas.toDataURL( "image/png" ) //to show in img tag
 
-		var img = document.createElement( "img" );
-		img.setAttribute( "src", "data:image/svg+xml;base64," + btoa( svgData ) );
-
-		img.onload = function() {
-			ctx.drawImage( img, 0, 0 );
-
-			// Now is done
-			console.log( canvas.toDataURL( "image/png" ) );
-			var see_img = canvas.toDataURL( "image/png" )
-
-			document.write('<img style="width:50%" src="'+see_img+'"/>');
+	document.write('<img style="width:50%" src="'+see_img+'"/>');  //now in img tag
 
 };
 </script>
